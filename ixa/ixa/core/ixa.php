@@ -9,8 +9,25 @@
  * @package WordPress
  * @subpackage Ixa
  * @since 0.1
- * @author CÃ©sar HernÃ¡ndez
+ * @author Céar Hernández
  */
+
+/*
+ * Define framework constants for version and prefix
+ *  the prefix is useful to avoid name collisions
+ */
+define('IXA_VERSION', '1.0');
+define('IXA_PREFIX', 'ixa_');
+
+
+/*
+ * Define constants for parent and child paths
+ */
+$_themes_root = get_theme_root();
+define('IXA_PARENT_PATH',   $_themes_root . '/ixa');
+define('IXA_CHILD_PATH',    $_themes_root . '/' . get_template());
+
+
 
 /*
  * Load The Ixa theme CLass
@@ -56,5 +73,10 @@ function &get_ixa_theme()
     return $instance;
 }
 
+/*
+ * then initialize the object and we are done
+ */
+$theme =& get_ixa_theme();
 
-//Termina .../core/ixa.php ?>
+
+//End .../core/ixa.php
