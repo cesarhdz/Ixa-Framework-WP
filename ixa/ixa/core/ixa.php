@@ -9,7 +9,7 @@
  * @package WordPress
  * @subpackage Ixa
  * @since 0.1
- * @author Céar Hernández
+ * @author César Hernández
  */
 
 /*
