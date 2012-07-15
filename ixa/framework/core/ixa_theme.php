@@ -163,7 +163,7 @@ class Ixa_Theme {
         /*
          * Default config files are mandatory
          */
-        $file = IXA_PARENT_PATH .'/ixa/config/default.php';
+        $file = IXA_PARENT_PATH .'/framework/config/default.php';
         if(file_exists($file))
         {
             include($file);
@@ -978,4 +978,4 @@ class Ixa_Theme {
 }
 
 
-/* Ending of  .../ixa/core/ixa_theme.php */
+/* Ending of  .../ixa/framework/core/ixa_theme.php */

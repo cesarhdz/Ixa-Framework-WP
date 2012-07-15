@@ -32,7 +32,7 @@ define('IXA_CHILD_PATH',    $_themes_root . '/' . get_template());
 /*
  * Load The Ixa theme CLass
  */
-require IXA_PARENT_PATH . '/ixa/core/ixa_theme.php';
+require IXA_PARENT_PATH . '/framework/core/ixa_theme.php';
 
 /*
  * Load The Functions
@@ -51,7 +51,7 @@ if('WP_DEBUG' == true)
      */
     error_reporting(E_ALL & ~E_NOTICE);
 
-    require IXA_PARENT_PATH . '/ixa/core/dev_tools.php';
+    require IXA_PARENT_PATH . '/framework/core/dev_tools.php';
 }
     
 /*
