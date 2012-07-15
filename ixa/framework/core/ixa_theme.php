@@ -38,7 +38,7 @@ class Ixa_Theme {
         /*
          * Child theme config
          */
-        $file = IXA_CHILD_PATH . '/_ixa_config.php';
+        $file = IXA_CHILD_PATH . '/ixa/config.php';
         
         if(file_exists($file))
         {
