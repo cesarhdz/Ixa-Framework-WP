@@ -9,7 +9,7 @@
  * @package WordPress
  * @subpackage Ixa
  * @since 0.1
- * @author CÈsar Hern·ndez
+ * @author C√©sar Hern√°ndez
  */
 
 /*
@@ -33,6 +33,12 @@ define('IXA_CHILD_PATH',    $_themes_root . '/' . get_template());
  * Load The Ixa theme CLass
  */
 require IXA_PARENT_PATH . '/framework/core/ixa_theme.php';
+
+
+/*
+ * Load Ixa Images
+ */
+include IXA_PARENT_PATH . '/framework/core/ixa_images.php';
 
 /*
  * Load The Functions
