@@ -8,7 +8,7 @@ class Ixa_images {
     
     // Sizes Registered in Ixa FRamework
     //@TODO Make Ixa Image Sizes configurables via admin
-    var $sizes = array(
+    static $sizes = array(
        '2-cols' => array(
             'w' => 116,
         ),
@@ -125,7 +125,7 @@ class Ixa_images {
          * CHose and filter the size
          */
         //@TODO Create default size
-        $attr = (is_array($size)) ? $size : $this['sizes'][$size];
+        $attr = (is_array($size)) ? $size : self::$sizes[$size];
         
         /*
         * Filtramos los parámetor y los cambiamos de formato
@@ -197,12 +197,12 @@ class Ixa_images {
         }
         
         
-        if(array_key_exists($size, $this->sizes))
+        if(array_key_exists($size, self::$sizes))
         {
             /*
              * Get preset width and compare to max width allowed
              */
-            $width = $this->sizes[$size]['w'];
+            $width = self::$sizes[$size]['w'];
             $width = ($width > $this->max_width) ? $max_width : $width;
         }
         
@@ -235,7 +235,7 @@ class Ixa_images {
 
         $custom_sizes = '';
         
-        foreach($this->sizes as $size => $properties) 
+        foreach(self::$sizes as $size => $properties) 
         {
             if ($size == 'post-thumbnail') continue;
 
