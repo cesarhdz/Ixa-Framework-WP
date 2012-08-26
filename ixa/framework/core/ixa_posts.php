@@ -27,7 +27,7 @@ class Ixa_Posts {
             'order' => 'ASC',
         );
         
-        self::$template_defaults = array(
+        self::$templates_default = array(
             'loop' => array(
                 'header' => 'default_loop_header',
                 'header_empty' => 'default_loop_header-empty',
@@ -54,7 +54,7 @@ class Ixa_Posts {
          * Merge all the templates we want to show
          */
         $templates = (is_array($templates))
-                   ? array_merge(self::$templates_default['loop'], $params['templates'])
+                   ? array_merge(self::$templates_default['loop'], $templates)
                    : self::$templates_default;
         
         
@@ -102,9 +102,9 @@ class Ixa_Posts {
            {
                $Q->the_post();
                
-               $vars['_pos'] = $pos;
+               $out .= $IXA->module($templates['posts'] . '-' . $pos, $vars);
                
-               $out .= $IXA->module($templates['posts'], $vars);
+               $pos ++;
            }
         }
         else
@@ -112,19 +112,18 @@ class Ixa_Posts {
             $out .= $IXA->module($templates['no_posts']);
         }
         
+        // Reset query if we had custom query
+        if(is_array($query) AND count($query))
+            wp_reset_query();
+        
         /*
          * Load the footer
          */
         $footer = ($have_posts) ? $templates['footer'] : $templates['footer_empty'];
         $out .= ($footer) ?  $IXA->module($footer, $vars) : '';
         
-        
-        // Reset query if we had custom query
-        if(is_array($query) AND count($query))
-            wp_reset_query();
-        
         // Return
-        $out;
+        return $out;
 
     } 
 }
