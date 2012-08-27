@@ -101,7 +101,7 @@ class Ixa_Modules {
          */
         $templates['header'] = (! $have_posts and isset($templates['header_empty'])) 
                              ? $templates['header_empty'] 
-                             : $templates['footer'];
+                             : $templates['header'];
         $out .= ($templates['header']) ? $IXA->module($templates['header'], $params['vars']) . "\n" : "\n";
         
         /*
@@ -153,16 +153,15 @@ class Ixa_Modules {
         $IXA =& get_ixa_theme();
         $out = "\n";
         
-        
         if(have_posts())
         {
             // Initialize the post
             the_post();
             
             // Load header, content and footer
-            $out .= ($template['header']) ? $IXA->module($templates['header'], $vars) . "\n" : "\n";
+            $out .= ($templates['header']) ? $IXA->module($templates['header'], $vars) . "\n" : "\n";
             $out .= $IXA->module($templates['content'], $vars) . "\n";
-            $out .= ($template['footer']) ? $IXA->module($templates['footer'], $vars) . "\n" : "\n";
+            $out .= ($templates['footer']) ? $IXA->module($templates['footer'], $vars) . "\n" : "\n";
         }
         
         return self::_set_output($out);
