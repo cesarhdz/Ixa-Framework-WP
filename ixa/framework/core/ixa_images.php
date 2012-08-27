@@ -169,6 +169,14 @@ class Ixa_images {
         return $img;
     }
     
+    /*
+     * Shorcut to get post thumbnail
+     */
+    static function post_thumbnail($post_id, $size)
+    {
+        return self::get(get_post_thumbnail_id($post_id), $size);
+    }
+    
     
     /* 
     * Img Tag Filter
