@@ -124,7 +124,7 @@ class Ixa_Modules {
         }
         
         // Reset query if we had custom query
-        if(is_array($query) AND count($query))
+        if(is_array($params['query']) AND count($params['query']))
             wp_reset_query();
         
         /*
