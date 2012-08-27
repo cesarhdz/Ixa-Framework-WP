@@ -9,6 +9,8 @@ class Ixa_Modules {
     static $query_defaults;
     static $templates_default;
     
+    // Output Mode defines whether the output will be echoe or return as string
+    static $output_mode;
 
     public function __construct()
     {
@@ -37,11 +39,21 @@ class Ixa_Modules {
                 'no_posts' => 'default_loop_no_posts',
                 'posts' => 'default_loop_posts',
              ),
-            'single' => array(
+            'post' => array(
+                'header' => 'default_post_header',
+                'content' => 'default_post_content',
+                'footer' => 'default_post_footer'
             ),
         );
     }
     
+    static function set_outputmode($mode)
+    {
+        self::$output_mode = ($mode == 'echo')
+                           ? 'echo' : 'string';
+    }
+
+
     /*
      * Loop
      * @param array query Son las variables para filtar los posts
@@ -124,9 +136,47 @@ class Ixa_Modules {
         $out .= ($footer) ?  $IXA->module($footer, $vars) : '';
         
         // Return
-        return $out;
-
-    } 
+        return self::_set_output($out);
+    }
+    
+    static function post($templates = array(), $vars = array())
+    {
+              /*
+         * Merge all the templates we want to show
+         */
+        $templates = (is_array($templates))
+                   ? array_merge(self::$templates_default['post'], $templates)
+                   : self::$templates_default;
+        
+        $IXA =& get_ixa_theme();
+        $out = '';
+        
+        
+        if(have_posts())
+        {
+            // Initialize the post
+            the_post();
+            
+            // Load header, content and footer
+            $out .= $IXA->module($templates['header'], $vars);
+            $out .= $IXA->module($templates['content'], $vars);
+            $out .= $IXA->module($templates['footer'], $vars);
+        }
+        
+        return self::_set_output($out);
+        
+    }
+    
+    static function _set_output(&$out)
+    {
+        if(self::$output_mode == 'echo')
+        {
+            echo $out;
+            return true;
+        }
+        else
+            return $out;
+    }
 }
 
 new Ixa_Modules();
