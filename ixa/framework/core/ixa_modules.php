@@ -92,7 +92,7 @@ class Ixa_Modules {
          * New instance of Ixa Theme to load files
          */
         $IXA =& get_ixa_theme();
-        $out = '';
+        $out = "\n";
         
         // Save have posts variable to make available in footer
         $have_posts = $Q->have_posts();
@@ -102,7 +102,7 @@ class Ixa_Modules {
          * Load the header of the loop
          */
         $header = ($have_posts) ? $templates['header'] : $templates['header_empty'];
-        $out .= ($header) ? $IXA->module($header, $vars) : '';
+        $out .= ($header) ? $IXA->module($header, $vars) . "\n" : "\n";
         
         /*
          * Load the content of the loop
@@ -115,7 +115,7 @@ class Ixa_Modules {
            {
                $Q->the_post();
                
-               $out .= $IXA->module($templates['posts'] . '-' . $pos, $vars);
+               $out .= $IXA->module($templates['posts'] . '-' . $pos, $vars) . "\n";
                
                $pos ++;
            }
@@ -133,7 +133,7 @@ class Ixa_Modules {
          * Load the footer
          */
         $footer = ($have_posts) ? $templates['footer'] : $templates['footer_empty'];
-        $out .= ($footer) ?  $IXA->module($footer, $vars) : '';
+        $out .= ($footer) ?  $IXA->module($footer, $vars) . "\n" : "\n";
         
         // Return
         return self::_set_output($out);
@@ -149,7 +149,7 @@ class Ixa_Modules {
                    : self::$templates_default;
         
         $IXA =& get_ixa_theme();
-        $out = '';
+        $out = "\n";
         
         
         if(have_posts())
@@ -158,9 +158,9 @@ class Ixa_Modules {
             the_post();
             
             // Load header, content and footer
-            $out .= $IXA->module($templates['header'], $vars);
-            $out .= $IXA->module($templates['content'], $vars);
-            $out .= $IXA->module($templates['footer'], $vars);
+            $out .= $IXA->module($templates['header'], $vars) . "\n";
+            $out .= $IXA->module($templates['content'], $vars) . "\n";
+            $out .= $IXA->module($templates['footer'], $vars) . "\n";
         }
         
         return self::_set_output($out);
