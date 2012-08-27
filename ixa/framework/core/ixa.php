@@ -39,7 +39,7 @@ require IXA_PARENT_PATH . '/framework/core/ixa_theme.php';
  * Load Ixa Images & Posts
  */
 include IXA_PARENT_PATH . '/framework/core/ixa_images.php';
-include IXA_PARENT_PATH . '/framework/core/ixa_posts.php';
+include IXA_PARENT_PATH . '/framework/core/ixa_modules.php';
 
 /*
  * Load The Functions

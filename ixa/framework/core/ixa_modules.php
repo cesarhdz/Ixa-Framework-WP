@@ -1,9 +1,10 @@
 <?php
 /**
- *Ixa Posts
+ *Ixa Modules
+ * @TODO Make a cleaner integration with Ixa Theme
  */
 
-class Ixa_Posts {
+class Ixa_Modules {
     
     static $query_defaults;
     static $templates_default;
@@ -33,8 +34,8 @@ class Ixa_Posts {
                 'header_empty' => 'default_loop_header-empty',
                 'footer' => 'default_loop_footer',
                 'footer_empty' => 'default_loop_footer-empty',
+                'no_posts' => 'default_loop_no_posts',
                 'posts' => 'default_loop_posts',
-                'posts_empty' => 'default_loop_posts-empty',
              ),
             'single' => array(
             ),
@@ -128,4 +129,4 @@ class Ixa_Posts {
     } 
 }
 
-new Ixa_Posts();
+new Ixa_Modules();
