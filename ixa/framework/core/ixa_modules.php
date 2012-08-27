@@ -33,9 +33,7 @@ class Ixa_Modules {
         self::$templates_default = array(
             'loop' => array(
                 'header' => 'default_loop_header',
-                'header_empty' => 'default_loop_header-empty',
                 'footer' => 'default_loop_footer',
-                'footer_empty' => 'default_loop_footer-empty',
                 'no_posts' => 'default_loop_no_posts',
                 'posts' => 'default_loop_posts',
              ),
@@ -61,13 +59,13 @@ class Ixa_Modules {
      *   @arg array  Templates
      *   @arg array  Vars
      */
-    static function loop($templates = array(), $query = array(), $vars = array())
+    static function loop($params = array())
     {
         /*
          * Merge all the templates we want to show
          */
-        $templates = (is_array($templates))
-                   ? array_merge(self::$templates_default['loop'], $templates)
+        $templates = (is_array($params))
+                   ? array_merge(self::$templates_default['loop'], $params)
                    : self::$templates_default;
         
         
@@ -76,10 +74,10 @@ class Ixa_Modules {
          * WP_Query, else reference to main $qp_query, this way both syntax are
          * compatible
          */
-        if(is_array($query) AND count($query))
+        if(is_array($params['query']) AND count($params['query']))
         {
             // Execute query, mergin default settings
-            $Q =&  new WP_Query( array_merge(self::$query_defaults, $query));
+            $Q =&  new WP_Query( array_merge(self::$query_defaults, $params['query']));
         }
         else
         {
@@ -102,7 +100,7 @@ class Ixa_Modules {
          * Load the header of the loop
          */
         $header = ($have_posts) ? $templates['header'] : $templates['header_empty'];
-        $out .= ($header) ? $IXA->module($header, $vars) . "\n" : "\n";
+        $out .= ($header) ? $IXA->module($header, $params['vars']) . "\n" : "\n";
         
         /*
          * Load the content of the loop
@@ -115,7 +113,7 @@ class Ixa_Modules {
            {
                $Q->the_post();
                
-               $out .= $IXA->module($templates['posts'] . '-' . $pos, $vars) . "\n";
+               $out .= $IXA->module($templates['posts'] . '-' . $pos, $params['vars']) . "\n";
                
                $pos ++;
            }
@@ -133,7 +131,7 @@ class Ixa_Modules {
          * Load the footer
          */
         $footer = ($have_posts) ? $templates['footer'] : $templates['footer_empty'];
-        $out .= ($footer) ?  $IXA->module($footer, $vars) . "\n" : "\n";
+        $out .= ($footer) ?  $IXA->module($footer, $params['vars']) . "\n" : "\n";
         
         // Return
         return self::_set_output($out);
