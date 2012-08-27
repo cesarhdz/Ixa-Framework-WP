@@ -45,7 +45,7 @@ include IXA_PARENT_PATH . '/framework/core/ixa_modules.php';
  * Load The Functions
  * @TODO Improve functions or merge with helepers
  */
-//    require IXA_PARENT_PATH . 'themeplate/core/the_functions.php';
+require IXA_PARENT_PATH . '/framework/core/functions.php';
     
 /*
 * Load Develpment functions
