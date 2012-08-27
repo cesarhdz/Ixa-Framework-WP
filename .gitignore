@@ -2,6 +2,7 @@ nbproject/
 ixa/assets/
 ixa_child/styles/
 ixa_child/modules/
+!ixa_child/modules/default/
 ixa_child/assets/
 ixa/img/cache/
 !ixa/img/cache/index.html
