@@ -7,12 +7,12 @@
 /*
  * We first load meta
  */
-$this->part('meta');
+$this->part('meta');    
 ?>
 
 <div class="page">
     <?php $this->part('branding') ?>
     <div class="page-content">
-        <?php echo Ixa_Modules::loop() ?>
+        <?php echo Ixa_Modules::post() ?>
     </div>
 </div>
